@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>little-david | Consultoría y Desarrollo de Software Personalizado</title>
+    <style>
+        :root {
+            --bg-primary: #E2E8F0;
+            --bg-secondary: #FFFFFF;
+            --bg-tertiary: #F1F5F9;
+            --text-primary: #0F172A;
+            --text-secondary: #475569;
+            --text-tertiary: #94A3B8;
+            --accent-primary: #14B8A6;
+            --accent-dark: #0F172A;
+            --border: #CBD5E1;
+            --success: #4CAF50;
+            --warning: #FFA726;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root:not([data-theme="light"]) {
+                --bg-primary: #0F172A;
+                --bg-secondary: #1E293B;
+                --bg-tertiary: #334155;
+                --text-primary: #E2E8F0;
+                --text-secondary: #CBD5E1;
+                --text-tertiary: #94A3B8;
+                --border: #475569;
+            }
+        }
+
+        :root[data-theme="dark"] {
+            --bg-primary: #0F172A;
+            --bg-secondary: #1E293B;
+            --bg-tertiary: #334155;
+            --text-primary: #E2E8F0;
+            --text-secondary: #CBD5E1;
+            --text-tertiary: #94A3B8;
+            --border: #475569;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-weight: 400;
+            letter-spacing: -0.3px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-weight: 700;
+            text-wrap: balance;
+            letter-spacing: -0.4px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 2.25rem;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        h3 {
+            font-size: 1.35rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        p {
+            color: var(--text-secondary);
+            max-width: 65ch;
+            margin-bottom: 1.25rem;
+            font-size: 1.05rem;
+            line-height: 1.75;
+        }
+
+        small {
+            font-size: 0.875rem;
+            color: var(--text-tertiary);
+        }
+
+        /* Header & Navigation */
+        header {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 120px;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            height: 120px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--accent-primary);
+        }
+
+        /* Main container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Section */
+        section {
+            padding: 6rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 6rem 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        .hero-content p {
+            font-size: 1.125rem;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        .hero-visual {
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-dark) 100%);
+            border-radius: 12px;
+            height: 380px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            font-weight: 300;
+            box-shadow: 0 20px 40px rgba(20, 184, 166, 0.15);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid;
+            cursor: pointer;
+            text-align: center;
+            letter-spacing: 0.3px;
+        }
+
+        .btn-primary {
+            background: var(--accent-primary);
+            color: white;
+            border-color: var(--accent-primary);
+            box-shadow: 0 4px 12px rgba(20, 184, 166, 0.2);
+        }
+
+        .btn-primary:hover {
+            background: #0d9488;
+            border-color: #0d9488;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(20, 184, 166, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent-primary);
+            border-color: var(--accent-primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent-primary);
+            color: white;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .service-card {
+            background: var(--bg-secondary);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border-left: 5px solid var(--accent-primary);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 32px rgba(20, 184, 166, 0.1);
+            border-left: 5px solid var(--accent-primary);
+        }
+
+        .service-card h3 {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .service-card .icon {
+            font-size: 2.75rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        /* Work Model */
+        .work-model {
+            background: var(--bg-secondary);
+            padding: 3rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .work-model:hover {
+            box-shadow: 0 8px 24px rgba(20, 184, 166, 0.08);
+            border-color: var(--accent-primary);
+        }
+
+        .work-model h3 {
+            color: var(--accent-primary);
+            margin-bottom: 1rem;
+            font-size: 1.35rem;
+        }
+
+        /* Results Grid */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .result-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            transition: all 0.3s;
+        }
+
+        .result-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(20, 184, 166, 0.08);
+        }
+
+        .result-item .number {
+            font-size: 2.75rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .result-item p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Cases */
+        .case-study {
+            background: var(--bg-secondary);
+            padding: 2.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.75rem;
+            border-left: 5px solid var(--accent-primary);
+            transition: all 0.3s;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .case-study:hover {
+            box-shadow: 0 8px 24px rgba(20, 184, 166, 0.08);
+        }
+
+        .case-study h3 {
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+            font-size: 1.25rem;
+        }
+
+        .case-study .case-label {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-primary), #0d9488);
+            color: white;
+            padding: 0.35rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 6rem 0;
+            background: var(--bg-secondary);
+            margin: 0 -2rem;
+            padding: 6rem 2rem;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .cta-section h2 {
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section > .container > p {
+            font-size: 1.125rem;
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        footer p {
+            color: var(--text-tertiary);
+            margin-bottom: 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.875rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-visual {
+                height: 250px;
+            }
+
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            section {
+                padding: 3rem 0;
+            }
+        }
+
+        /* Focus states for accessibility */
+        a:focus-visible, button:focus-visible {
+            outline: 2px solid var(--accent-primary);
+            outline-offset: 2px;
+        }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">
+                <img src="images/logo.png" alt="little-david">
+            </a>
+            <ul>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#como-trabajamos">Cómo Trabajamos</a></li>
+                <li><a href="#resultados">Resultados</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="container">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1>Soluciones de software que crecen con tu negocio</h1>
+                    <p>Consultoría y desarrollo personalizado para empresas que necesitan más que productos estándar. Desde diagnósticos hasta implementación, hacemos que tus sistemas trabajen juntos.</p>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <a href="#contacto" class="btn btn-primary">Agendar consulta</a>
+                        <a href="#servicios" class="btn btn-secondary">Ver servicios</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    ⚙️ 🚀
+                </div>
+            </div>
+        </section>
+
+        <!-- Servicios -->
+        <section id="servicios">
+            <div class="container">
+                <h2>Nuestros Servicios</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="icon">💻</div>
+                        <h3>Desarrollo de Software</h3>
+                        <p>Aplicaciones web y móviles, portales, dashboards, APIs, sistemas administrativos e integraciones hechas a tu medida. React, Node.js, Java, .NET — lo que tu negocio necesite.</p>
+                        <small><strong>Ejemplo:</strong> Portal de clientes conectado a tu ERP, CRM, sistema de pagos y facturación.</small>
+                    </div>
+                    <div class="service-card">
+                        <div class="icon">🤖</div>
+                        <h3>Automatización e IA</h3>
+                        <p>Automatización de tareas repetitivas, RPA, flujos con APIs, chatbots e IA aplicada. Elimina trabajos manuales, reduce errores, ahorra tiempo.</p>
+                        <small><strong>Ejemplo:</strong> Leer facturas automáticamente, registrar datos y notificar aprobaciones sin captura manual.</small>
+                    </div>
+                    <div class="service-card">
+                        <div class="icon">🔍</div>
+                        <h3>Consultoría Técnica</h3>
+                        <p>Auditoría inicial, diagnóstico profundo y roadmap de transformación digital. Sin obligación de ejecutar — te damos la claridad que necesitas para decidir.</p>
+                        <small><strong>Nos especializamos en:</strong> integración de sistemas, modernización, seguridad y recuperación de datos.</small>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cómo Trabajamos -->
+        <section id="como-trabajamos">
+            <div class="container">
+                <h2>Cómo Trabajamos</h2>
+                <div class="work-model">
+                    <h3>Consultoría por Diagnóstico</h3>
+                    <p>Comenzamos con una auditoría profunda de tus sistemas, procesos y desafíos. Te entregamos un roadmap claro con prioridades, costos y tiempos. Sin presión para ejecutar — decides qué camino seguir con información en mano.</p>
+                </div>
+                <div class="work-model">
+                    <h3>Desarrollo a Medida</h3>
+                    <p>Construimos exactamente lo que tu negocio necesita, no lo que un producto estándar te obliga a usar. Trabajamos con React, Node.js, Java, .NET y apps móviles. Entendemos que cada empresa es diferente.</p>
+                </div>
+                <div class="work-model">
+                    <h3>Resultados Medibles</h3>
+                    <p>No entregamos código que nadie usa. Cada proyecto tiene objetivos claros: reducir costos operativos, mejorar velocidad, aumentar seguridad o generar nuevas oportunidades de negocio.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resultados que entregamos -->
+        <section id="resultados">
+            <div class="container">
+                <h2>Resultados que Entregamos</h2>
+                <div class="results-grid">
+                    <div class="result-item">
+                        <div class="number">↓ 80%</div>
+                        <p>Menos caídas y problemas operativos</p>
+                    </div>
+                    <div class="result-item">
+                        <div class="number">↓ 90%</div>
+                        <p>Menos trabajo manual y errores de captura</p>
+                    </div>
+                    <div class="result-item">
+                        <div class="number">📊</div>
+                        <p>Mejor control de ventas, inventario, cobranza y clientes</p>
+                    </div>
+                    <div class="result-item">
+                        <div class="number">🔒</div>
+                        <p>Seguridad y recuperación ante pérdida de datos</p>
+                    </div>
+                    <div class="result-item">
+                        <div class="number">🌐</div>
+                        <p>Trabajo remoto ordenado y seguro</p>
+                    </div>
+                    <div class="result-item">
+                        <div class="number">🔗</div>
+                        <p>Integración entre sistemas que antes operaban aislados</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Casos de Uso -->
+        <section>
+            <div class="container">
+                <h2>Casos Comunes que Resolvemos</h2>
+                <div class="case-study">
+                    <div class="case-label">Integración</div>
+                    <h3>Dashboard de Ventas y Cobranza</h3>
+                    <p>Tu equipo de ventas no ve en tiempo real qué clientes están al día, cuáles tienen pagos pendientes, o dónde están estancados los proyectos. Construimos un dashboard que conecta facturación, CRM y ventas en una sola vista.</p>
+                </div>
+                <div class="case-study">
+                    <div class="case-label">Automatización</div>
+                    <h3>Integración con Facturación, E-commerce y WhatsApp</h3>
+                    <p>Cada venta dispara automáticamente una factura, se registra en tu inventario y el cliente recibe una confirmación por WhatsApp. Sin tocar nada manualmente.</p>
+                </div>
+                <div class="case-study">
+                    <div class="case-label">Desarrollo Custom</div>
+                    <h3>Sistema Administrativo que No Existe como Producto Estándar</h3>
+                    <p>Necesitas un flujo específico para tu industria: gestión de proyectos con integración a proveedores, reportes personalizados, permisos granulares. Lo construimos como lo necesitas.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section id="contacto" class="cta-section">
+            <div class="container">
+                <h2>Hablemos de tu Proyecto</h2>
+                <p>¿Tienes un desafío técnico, sistemas que no hablan entre sí, o procesos que consumen demasiado tiempo manual? Nos encanta resolver problemas reales.</p>
+                <a href="mailto:contacto@little-david.com" class="btn btn-primary" style="margin-top: 1rem;">Escribir a little-david</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p><strong>little-david</strong> | Consultoría y desarrollo de software personalizado</p>
+            <p style="margin-top: 0.5rem;">Construimos soluciones que crecen con tu empresa.</p>
+        </div>
+    </footer>
+</body>
+</html>
