@@ -32,26 +32,26 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="servicios" className="max-w-6xl mx-auto px-8 py-24 border-b border-gray-200 dark:border-gray-700">
-      <h2 className="text-4xl font-bold text-primary dark:text-white mb-16 font-mono">
+    <section id="servicios" className="max-w-6xl mx-auto px-4 sm:px-8 py-12 sm:py-24 border-b border-gray-200 dark:border-gray-700">
+      <h2 className="text-3xl sm:text-4xl font-bold text-primary dark:text-white mb-8 sm:mb-16 font-mono">
         Nuestros Servicios
       </h2>
-      <div className="grid grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
         {services.map((service) => {
           const IconComponent = service.icon;
           return (
             <div
               key={service.id}
-              className="bg-white dark:bg-gray-800 p-8 rounded-2xl border-l-4 border-accent hover:shadow-lg transition-all transform hover:-translate-y-1"
+              className="bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-2xl border-l-4 border-accent hover:shadow-lg transition-all transform hover:-translate-y-1"
             >
-              <IconComponent className="w-12 h-12 text-accent mb-4" />
-              <h3 className="text-2xl font-bold text-primary dark:text-white mb-4 font-mono">
+              <IconComponent className="w-10 sm:w-12 h-10 sm:h-12 text-accent mb-4" />
+              <h3 className="text-lg sm:text-2xl font-bold text-primary dark:text-white mb-3 sm:mb-4 font-mono">
                 {service.title}
               </h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed font-grotesk">
+              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-3 sm:mb-4 leading-relaxed font-grotesk">
                 {service.description}
               </p>
-              <p className="text-sm text-gray-500 dark:text-gray-400 italic font-grotesk">
+              <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 italic font-grotesk">
                 {service.example}
               </p>
             </div>

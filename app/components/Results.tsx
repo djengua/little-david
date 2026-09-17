@@ -50,11 +50,11 @@ const results = [
 
 export default function Results() {
   return (
-    <section id="resultados" className="max-w-6xl mx-auto px-8 py-24 border-b border-gray-200 dark:border-gray-700">
-      <h2 className="text-4xl font-bold text-primary dark:text-white mb-16 font-mono">
+    <section id="resultados" className="max-w-6xl mx-auto px-4 sm:px-8 py-12 sm:py-24 border-b border-gray-200 dark:border-gray-700">
+      <h2 className="text-3xl sm:text-4xl font-bold text-primary dark:text-white mb-8 sm:mb-16 font-mono">
         Resultados que Entregamos
       </h2>
-      <div className="grid grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
         {results.map((result) => {
           const IconComponent = result.icon;
           return (

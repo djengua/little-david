@@ -21,20 +21,20 @@ const workModels = [
 
 export default function HowWeWork() {
   return (
-    <section id="como-trabajamos" className="max-w-6xl mx-auto px-8 py-24 border-b border-gray-200 dark:border-gray-700">
-      <h2 className="text-4xl font-bold text-primary dark:text-white mb-16 font-mono">
+    <section id="como-trabajamos" className="max-w-6xl mx-auto px-4 sm:px-8 py-12 sm:py-24 border-b border-gray-200 dark:border-gray-700">
+      <h2 className="text-3xl sm:text-4xl font-bold text-primary dark:text-white mb-8 sm:mb-16 font-mono">
         Cómo Trabajamos
       </h2>
       <div className="space-y-6">
         {workModels.map((model) => (
           <div
             key={model.id}
-            className="bg-white dark:bg-gray-800 p-8 rounded-2xl border border-gray-200 dark:border-gray-700 hover:border-accent hover:shadow-lg transition-all"
+            className="bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-2xl border border-gray-200 dark:border-gray-700 hover:border-accent hover:shadow-lg transition-all"
           >
-            <h3 className="text-2xl font-semibold text-accent mb-3 font-mono">
+            <h3 className="text-xl sm:text-2xl font-semibold text-accent mb-2 sm:mb-3 font-mono">
               {model.title}
             </h3>
-            <p className="text-gray-600 dark:text-gray-300 leading-relaxed font-grotesk">
+            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed font-grotesk">
               {model.description}
             </p>
           </div>
